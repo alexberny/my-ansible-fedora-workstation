@@ -3,4 +3,4 @@
   connection: local
   become: 'yes'
   roles:
-    - rpm-fusion
+    - gnome-tweak-tool
