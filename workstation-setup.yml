@@ -1,0 +1,3 @@
+- name: "Install workstation"
+  hosts: localhost
+  become: 'yes'

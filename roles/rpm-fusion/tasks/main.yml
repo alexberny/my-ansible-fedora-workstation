@@ -1,0 +1,6 @@
+---
+- name: Enable RPM Fusion Free
+  become: true
+  dnf:
+    name: "{{ rpm-fusion-free-url }}"
+    state: present
