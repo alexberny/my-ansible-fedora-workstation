@@ -4,3 +4,4 @@
   become: 'yes'
   roles:
     - gnome-tweak-tool
+    - vlc

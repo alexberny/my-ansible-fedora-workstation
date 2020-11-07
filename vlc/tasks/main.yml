@@ -1,0 +1,6 @@
+---
+- name: vlc
+  become: true
+  dnf:
+    name: vlc
+    state: present
