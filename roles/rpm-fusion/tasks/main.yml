@@ -2,5 +2,5 @@
 - name: Enable RPM Fusion Free
   become: true
   dnf:
-    name: "{{ rpm-fusion-free-url }}"
+    name: https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
     state: present
