@@ -3,5 +3,7 @@
   connection: local
   become: 'yes'
   roles:
+    - role: robertdebock.bootstrap
+    - role: robertdebock.epel
     - gnome-tweak-tool
     - vlc
