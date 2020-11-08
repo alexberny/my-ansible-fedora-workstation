@@ -8,3 +8,4 @@
     #- role: robertdebock.rpmfusion
     - gnome-tweak-tool
     #- vlc
+    - tilix
