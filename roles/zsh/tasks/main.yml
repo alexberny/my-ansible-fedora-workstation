@@ -17,7 +17,7 @@
 
 - name: get antigen
   get-url: 
-    url: git.io/antigen 
+    url: http://git.io/antigen 
     dest: antigen.zsh
   when: not stat_antigen_result.stat.exists
 
