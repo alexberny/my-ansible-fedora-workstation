@@ -6,9 +6,9 @@
     - role: robertdebock.bootstrap
       become: yes
     - role: robertdebock.epel
-    become: yes
+      become: yes
     #- role: robertdebock.rpmfusion
-    #become: yes
+    #  become: yes
     - gnome-tweak-tool
     #- vlc
     - zsh
