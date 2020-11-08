@@ -1,0 +1,26 @@
+---
+- name: Installing zsh
+  become: true
+  dnf:
+    name: zsh
+    state: present
+
+- name: check if .zshrc file exists
+  stat:
+      path: ~/.zshrc
+  register: stat_zshrc_result
+
+- name: Check if antigen directory exists
+  stat:
+      path: ~/.antigen
+  register: stat_antigen_result
+
+- name: get antigen
+  shell:  "curl -L git.io/antigen > antigen.zsh"
+  when: not stat_antigen_result.stat.exists
+
+- name: Get preconfigured .zshrc 
+  copy:
+    src: ../files/.zshrc
+    dest: ~/.zshrc
+  when: not stat_zshrc_result.stat.exists
