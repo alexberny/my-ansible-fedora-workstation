@@ -1,9 +1,2 @@
 [workstation]
 localhost
-
-[workstation:vars]
-# Allow installation of the "free" package?
-rpmfusion_free = yes
-
-# Allow installation of the "nonfree" package?
-rpmfusion_nonfree = yes
