@@ -1,7 +1,7 @@
 - name: "Install workstation"
   hosts: localhost
   connection: local
-  become: 'yes'
+  #become: 'yes'
   roles:
     - role: robertdebock.bootstrap
     - role: robertdebock.epel
