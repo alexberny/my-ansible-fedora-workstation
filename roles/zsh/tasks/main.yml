@@ -18,7 +18,7 @@
 - name: get antigen
   get_url: 
     url: http://git.io/antigen 
-    dest: antigen.zsh
+    dest: ~/antigen.zsh
   when: not stat_antigen_result.stat.exists
 
 - name: Get preconfigured .zshrc 
