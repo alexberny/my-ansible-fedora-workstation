@@ -5,6 +5,6 @@
   roles:
     - role: robertdebock.bootstrap
     - role: robertdebock.epel
-    - role: robertdebock.rpmfusion
+    #- role: robertdebock.rpmfusion
     - gnome-tweak-tool
-    - vlc
+    #- vlc
