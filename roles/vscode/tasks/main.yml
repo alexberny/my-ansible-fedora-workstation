@@ -1,0 +1,13 @@
+---
+- name: Getting rpm kew
+  become: true
+  rpm_key:
+    state: present
+    key: https://packages.microsoft.com/keys/microsoft.asc
+
+- name: Install vscode
+  become: true
+  dnf: 
+    name: vscode
+    update_cache: true
+    state: present
