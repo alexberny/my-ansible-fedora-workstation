@@ -7,9 +7,9 @@
       become: yes
     - role: robertdebock.epel
       become: yes
-    #- role: robertdebock.rpmfusion
-    #  become: yes
+    - role: robertdebock.rpmfusion
+      become: yes
     - gnome-tweak-tool
-    #- vlc
+    - vlc
     - zsh
     - tilix
