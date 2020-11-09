@@ -5,15 +5,8 @@
     state: present
     key: https://packages.microsoft.com/keys/microsoft.asc
 
-- name: Update dnf cache
-  become: true
-  dnf:
-    name: "*"
-    update_cache: true
-    state: present
-
 - name: Install vscode
   become: true
   dnf: 
-    name: vscode
+    name: code
     state: present
