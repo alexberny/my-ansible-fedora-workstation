@@ -3,6 +3,7 @@
   connection: local
   #become: 'yes'
   roles:
+    - ansible-galaxy
     - role: robertdebock.bootstrap
       become: yes
     - role: robertdebock.epel
