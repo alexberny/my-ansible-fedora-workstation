@@ -14,7 +14,7 @@
   copy: 
     src: ../files/vscode.repo
     dest: /etc/yum.repos.d/vscode.repo
-  when: not stat_vscode_repo.stat.result.exists
+  when: not stat_vscode_repo.stat.exists
 
 - name: Install vscode
   become: true
