@@ -5,10 +5,16 @@
     state: present
     key: https://packages.microsoft.com/keys/microsoft.asc
 
-- name: dnf update
-  become: true
-  shell: dnf update
+- name: check vscore yum repo exists
+  stat:
+    path: /etc/yum.repos.d/vscode.repo
+  register: stat_vscode_repo.stat.result
 
+- name: Copy vscode repo
+  copy: 
+    src: ../files/vscode.repo
+    dest: /etc/yum.repos.d/vscode.repo
+  when: not stat_vscode_repo.stat.result.exists
 
 - name: Install vscode
   become: true
