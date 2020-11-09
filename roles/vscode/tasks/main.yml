@@ -5,6 +5,11 @@
     state: present
     key: https://packages.microsoft.com/keys/microsoft.asc
 
+- name: dnf update
+  become: true
+  shell: dnf update
+
+
 - name: Install vscode
   become: true
   dnf: 
