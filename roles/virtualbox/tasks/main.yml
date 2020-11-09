@@ -1,0 +1,6 @@
+---
+- name: Install Virtualbox
+  become: true
+  dnf:
+    name: VirtualBox
+    state: present
