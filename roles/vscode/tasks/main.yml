@@ -11,6 +11,7 @@
   register: stat_vscode_repo
 
 - name: Copy vscode repo
+  become: true
   copy: 
     src: ../files/vscode.repo
     dest: /etc/yum.repos.d/vscode.repo
