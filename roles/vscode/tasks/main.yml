@@ -19,6 +19,6 @@
 
 - name: Install vscode
   become: true
-  dnf: 
+  package: 
     name: code
     state: present

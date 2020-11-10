@@ -1,6 +1,6 @@
 ---
 - name: gnome-tweak-tool
   become: true
-  dnf:
+  package:
     name: gnome-tweak-tool
     state: present

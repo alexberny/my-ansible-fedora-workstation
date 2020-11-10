@@ -1,6 +1,6 @@
 ---
 - name: tilix editor
   become: true
-  dnf:
+  package:
     name: tilix
     state: present

@@ -1,6 +1,6 @@
 ---
 - name: Install Virtualbox
   become: true
-  dnf:
+  package:
     name: VirtualBox
     state: present
