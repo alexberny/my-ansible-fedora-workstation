@@ -26,3 +26,49 @@
     src: ../files/.zshrc
     dest: ~/.zshrc
   when: not stat_zshrc_result.stat.exists
+
+- name: Get Awesome-Fonts
+  package:
+    name: fontawesome-fonts
+    state: present
+
+- name: Get Nerd Font
+  git:
+    repo: https://github.com/ryanoasis/nerd-fonts.git
+    depth: "1"
+    dest: ~/.nerd-fonts
+
+- name: Install Nerd font
+  command: install.sh
+  become: true
+  args:
+    chdir: .nerd-fonts
+
+- name: Remove Nerd font downloaded files
+  command: rm .nerd-fonts
+
+- name: Install Powerline fonts
+  become: true
+  package:
+     name: powerline-fonts
+     state: present
+
+- name: Install MesloGS NF Regular Font
+  git:
+    repo: https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf
+    dest: .local/share/fonts
+
+- name: Install MesloGS NF Bold Font
+  git:
+    repo: https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf
+    dest: .local/share/fonts
+
+- name: Install MesloGS NF Italic Font
+  git:
+    repo: https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf
+    dest: .local/share/fonts
+
+- name: Install MesloGS NF Bold Italic Font
+  git:
+    repo: https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf
+    dest: .local/share/fonts
