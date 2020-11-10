@@ -33,20 +33,20 @@
     name: fontawesome-fonts
     state: present
 
-- name: Get Nerd Font
-  git:
-    repo: https://github.com/ryanoasis/nerd-fonts.git
-    depth: "1"
-    dest: /tmp/.nerd-fonts
+# - name: Get Nerd Font
+#   git:
+#     repo: https://github.com/ryanoasis/nerd-fonts.git
+#     depth: "1"
+#     dest: /tmp/.nerd-fonts
 
-- name: Install Nerd font
-  command: install.sh
-  become: true
-  args:
-    chdir: /tmp/.nerd-fonts
+# - name: Install Nerd font
+#   command: install.sh
+#   become: true
+#   args:
+#     chdir: /tmp/.nerd-fonts
 
-- name: Remove Nerd font downloaded files
-  command: rm /tmp/.nerd-fonts
+# - name: Remove Nerd font downloaded files
+#   command: rm /tmp/.nerd-fonts
 
 - name: Install Powerline fonts
   become: true
