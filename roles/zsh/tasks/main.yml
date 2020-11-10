@@ -43,10 +43,10 @@
   command: install.sh
   become: true
   args:
-    chdir: .nerd-fonts
+    chdir: ~/.nerd-fonts
 
 - name: Remove Nerd font downloaded files
-  command: rm .nerd-fonts
+  command: rm ~/.nerd-fonts
 
 - name: Install Powerline fonts
   become: true
