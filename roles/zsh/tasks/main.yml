@@ -28,6 +28,7 @@
   when: not stat_zshrc_result.stat.exists
 
 - name: Get Awesome-Fonts
+  become: true
   package:
     name: fontawesome-fonts
     state: present
