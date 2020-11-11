@@ -1,0 +1,6 @@
+---
+- name: Install Transmission
+  become: true
+  package:
+    name: transmission
+    state: present

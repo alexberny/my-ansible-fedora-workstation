@@ -1,0 +1,24 @@
+- name: Install some browser
+  become: true
+  package: 
+    name: "{{ item.value.url }}"
+    state: present
+  with_dict: "{{ browser }}"
+
+- name: check Opera browser yum repo exists
+  stat:
+    path: /etc/yum.repos.d/opera.repo
+  register: stat_opera_repo
+
+
+- name: Opera brower repo
+  become: true
+  copy:
+    src: ../files/opera.repo
+    dest: /etc/yum.repos.d/opera.repo
+  when: not stat_opera_repo.stat.exists
+
+- name: Install Opera brower
+  package:
+    name: opera-stable
+    state: present

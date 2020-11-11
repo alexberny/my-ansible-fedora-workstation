@@ -1,0 +1,11 @@
+- name: Install libreoffice
+  become: true
+  package: 
+    name: code
+    state: libreoffice
+
+- name: Install libreoffice IT lang
+  become: true
+  package: 
+    name: code
+    state: libreoffice-langpack-it
