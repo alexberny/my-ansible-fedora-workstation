@@ -55,21 +55,21 @@
      state: present
 
 - name: Install MesloGS NF Regular Font
-  git:
+  get_url:
     repo: https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf
     dest: ~/.local/share/fonts
 
 - name: Install MesloGS NF Bold Font
-  git:
+  get_url:
     repo: https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf
     dest: ~/.local/share/fonts
 
 - name: Install MesloGS NF Italic Font
-  git:
+  get_url:
     repo: https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf
     dest: ~/.local/share/fonts
 
 - name: Install MesloGS NF Bold Italic Font
-  git:
+  get_url:
     repo: https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf
     dest: ~/.local/share/fonts
