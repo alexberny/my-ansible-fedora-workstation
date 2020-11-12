@@ -1,0 +1,5 @@
+- name: Install Balena Etcher
+  become: true
+  package: 
+    name: balena-etcher-electron
+    state: present

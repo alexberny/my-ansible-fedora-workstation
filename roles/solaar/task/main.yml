@@ -1,0 +1,5 @@
+- name: Install solaar
+  become: true
+  package: 
+    name: solaar
+    state: present
