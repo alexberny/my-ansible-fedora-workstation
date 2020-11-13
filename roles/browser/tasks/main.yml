@@ -1,7 +1,7 @@
 - name: Install some browser
   become: true
   package: 
-    name: "{{ item.value.url }}"
+    name: "{{ item.value }}"
     state: present
   loop: "{{ browser | items2dict }}"
 
