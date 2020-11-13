@@ -1,5 +1,5 @@
 - name: Install Tor Browser
   become: true
   package: 
-    name: code
-    state: torbrowser-launcher
+    name: torbrowser-launcher
+    state: present
