@@ -10,6 +10,7 @@
       become: yes
     - role: robertdebock.rpmfusion
       become: yes
+    - vim
     - gnome-tweak-tool
     - vlc
     - zsh
