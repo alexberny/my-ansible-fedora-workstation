@@ -1,5 +1,3 @@
 - browser:
-  - chrome:
-    url: https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
-  - vivaldi: 
-    url: https://downloads.vivaldi.com/stable/vivaldi-stable-3.4.2066.99-1.x86_64.rpm
+  - { name: Chrome, url: https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm }
+  - { name: vivaldi, url: https://downloads.vivaldi.com/stable/vivaldi-stable-3.4.2066.99-1.x86_64.rpm }
