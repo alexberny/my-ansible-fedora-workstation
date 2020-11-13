@@ -3,7 +3,7 @@
   package: 
     name: "{{ item.value.url }}"
     state: present
-  loop: "{{ browser }}"
+  loop: "{{ browser | dict2items }}"
 
 - name: check Opera browser yum repo exists
   stat:
