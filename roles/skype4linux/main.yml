@@ -1,6 +1,6 @@
 - name: Install skype4linux
   become: true
-  package: 
+  yum: 
     name: https://go.skype.com/skypeforlinux-64.rpm
     state: present
 
