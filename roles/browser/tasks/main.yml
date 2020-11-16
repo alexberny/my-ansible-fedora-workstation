@@ -1,0 +1,53 @@
+- name: Check Google Chrome repo exists
+  stat:
+    path: /etc/yum.repos.d/google-chrome.repo
+  register: stat_chrome_repo
+
+- name: Check Opera repo exists
+  stat:
+    path: /etc/yum.repos.d/opera.repo
+  register: stat_opera.repo
+  
+- name: Check Vivaldi repo exists
+  stat:
+    path: /etc/yum.repos.d/google-chrome.repo
+  register: stat_vivaldi_repo
+  
+- name: Copy Google Chrome repo
+  become: true
+  copy: 
+    src: ../files/google-chrome.repo
+    dest: /etc/yum.repos.d/google-chrome.repo
+  when: not stat_chrome_repo.stat.exists
+
+- name: Copy Opera repo
+  become: true
+  copy: 
+    src: ../files/opera.repo
+    dest: /etc/yum.repos.d/opera.repo
+  when: not stat_opera_repo.stat.exists
+
+- name: Copy Vivaldi repo
+  become: true
+  copy: 
+    src: ../files/vivaldi.repo
+    dest: /etc/yum.repos.d/vivaldi.repo
+  when: not stat_vivaldi_repo.stat.exists
+
+- name: Install Google Chrome
+  become: true
+  dnf:
+    name: google-chrome-stable
+    state: present
+
+- name: Install Opera browser
+  become: true
+  dnf:
+    name: opera-stable
+    state: present
+
+- name: Install Vivaldi browser
+  become: true
+  dnf:
+    name: vivaldi-stable
+    state: present
