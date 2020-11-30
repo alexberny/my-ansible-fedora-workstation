@@ -1,6 +1,6 @@
 ---
 - name: Getting rpm kew
-  become: true
+  become: yes
   rpm_key:
     state: present
     key: https://packages.microsoft.com/keys/microsoft.asc
@@ -11,14 +11,14 @@
   register: stat_vscode_repo
 
 - name: Copy vscode repo
-  become: true
+  become: yes
   copy: 
     src: ../files/vscode.repo
     dest: /etc/yum.repos.d/vscode.repo
   when: not stat_vscode_repo.stat.exists
 
 - name: Install vscode
-  become: true
+  become: yes
   package: 
     name: code
     state: present

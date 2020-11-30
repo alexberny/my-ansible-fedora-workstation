@@ -1,5 +1,5 @@
 - name: Install virt-manager
-  become: true
+  become: yes
   package: 
     name: virt-manager
     state: present

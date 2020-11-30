@@ -1,6 +1,6 @@
 ---
 - name: Installing zsh
-  become: true
+  become: yes
   package:
     name: zsh
     state: present
@@ -28,7 +28,7 @@
   when: not stat_zshrc_result.stat.exists
 
 - name: Get Awesome-Fonts
-  become: true
+  become: yes
   package:
     name: fontawesome-fonts
     state: present
@@ -41,7 +41,7 @@
 
 # - name: Install Nerd font
 #   command: install.sh
-#   become: true
+#   become: yes
 #   args:
 #     chdir: /tmp/.nerd-fonts
 
@@ -49,7 +49,7 @@
 #   command: rm /tmp/.nerd-fonts
 
 - name: Install Powerline fonts
-  become: true
+  become: yes
   package:
      name: powerline-fonts
      state: present

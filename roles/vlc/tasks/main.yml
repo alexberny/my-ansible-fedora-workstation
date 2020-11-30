@@ -1,6 +1,6 @@
 ---
 - name: vlc
-  become: true
+  become: yes
   dnf:
     name: vlc
     state: present

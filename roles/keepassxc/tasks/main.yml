@@ -1,6 +1,6 @@
 ---
 - name: Install Keepassxc
-  become: true
+  become: yes
   package:
     name: keepassxc
     state: present

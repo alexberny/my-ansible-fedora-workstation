@@ -1,11 +1,11 @@
 - name: Install Balena Etcher repo
-  become: true
+  become: yes
   get_url: 
     url: https://balena.io/etcher/static/etcher-rpm.repo
     dest: /etc/yum.repos.d/etcher-rpm.repo
 
 - name: Install Balena Etcher
-  become: true
+  become: yes
   dnf: 
     name: balena-etcher-electron
     state: present

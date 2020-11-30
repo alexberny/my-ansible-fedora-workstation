@@ -1,5 +1,5 @@
 - name: Install vim
-  become: true
+  become: yes
   package: 
     name: vim
     state: present

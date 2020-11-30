@@ -14,40 +14,40 @@
   register: stat_vivaldi_repo
   
 - name: Copy Google Chrome repo
-  become: true
+  become: yes
   copy: 
     src: ../files/google-chrome.repo
     dest: /etc/yum.repos.d/google-chrome.repo
   when: not stat_chrome_repo.stat.exists
 
 - name: Copy Opera repo
-  become: true
+  become: yes
   copy: 
     src: ../files/opera.repo
     dest: /etc/yum.repos.d/opera.repo
   when: not stat_opera_repo.stat.exists
 
 - name: Copy Vivaldi repo
-  become: true
+  become: yes
   copy: 
     src: ../files/vivaldi.repo
     dest: /etc/yum.repos.d/vivaldi.repo
   when: not stat_vivaldi_repo.stat.exists
 
 - name: Install Google Chrome
-  become: true
+  become: yes
   dnf:
     name: google-chrome-stable
     state: present
 
 - name: Install Opera browser
-  become: true
+  become: yes
   dnf:
     name: opera-stable
     state: present
 
 - name: Install Vivaldi browser
-  become: true
+  become: yes
   dnf:
     name: vivaldi-stable
     state: present

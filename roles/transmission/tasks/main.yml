@@ -1,6 +1,6 @@
 ---
 - name: Install Transmission
-  become: true
+  become: yes
   package:
     name: transmission
     state: present
