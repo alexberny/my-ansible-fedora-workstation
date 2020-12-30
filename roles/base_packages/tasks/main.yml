@@ -1,0 +1,40 @@
+- name: Upgrade all packages
+  become: yes
+  dnf:
+    name: "*"
+    state: latest
+
+- name: Install base packages
+  become: yes
+  dnf:
+    name:
+      - vim
+      - gnome-tweak-tool
+      - vlc
+      - tilix
+      - VirtualBox
+      - keepassxc
+      - transmission
+      - libreoffice
+      - libreoffice-langpack-it
+      - torbrowser-launcher
+      - gimp
+      - solaar
+      - virt-manager
+      - ImageMagick
+      - potrace
+      - rclone
+      - "@Development Tools"
+      - youtube-dl
+      - pam-u2f
+      - pamu2fcfg
+      - yubikey-manager
+      - dnf-utils
+      - fedora-workstation-repositories
+      - gstreamer1
+      - gstreamer1-plugins-base
+      - cabextract
+      - xorg-x11-font-utils
+      - fontconfig
+      # - 'https://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm'
+    state: present

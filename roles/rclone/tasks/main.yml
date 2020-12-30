@@ -1,5 +1,0 @@
-- name: Install rclone
-  become: yes
-  dnf: 
-    name: rclone
-    state: present

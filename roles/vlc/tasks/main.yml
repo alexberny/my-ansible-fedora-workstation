@@ -1,6 +1,0 @@
----
-- name: vlc
-  become: yes
-  dnf:
-    name: vlc
-    state: present

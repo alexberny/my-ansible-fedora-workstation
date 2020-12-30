@@ -1,6 +1,13 @@
+- name: Get skype4linux repo
+  become: yes
+  get_url:
+    url: https://repo.skype.com/rpm/stable/skype-stable.repo
+    dest: /etc/yum.repos.d/skype-stable.repo
+
 - name: Install skype4linux
   become: yes
   dnf: 
-    name: https://go.skype.com/skypeforlinux-64.rpm
+    name: skypeforlinux
     state: present
+
 

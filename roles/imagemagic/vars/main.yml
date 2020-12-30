@@ -1,7 +1,0 @@
-- name: Install ImageMagick and potrace
-  become: yes
-  dnf:
-    name: 
-      - ImageMagick
-      - potrace
-    state: present

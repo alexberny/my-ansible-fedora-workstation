@@ -1,0 +1,4 @@
+- name: Autoremove unneeded packages installed as dependencies
+  become: yes
+  dnf:
+    autoremove: yes

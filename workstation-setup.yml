@@ -10,23 +10,11 @@
       become: yes
     - role: robertdebock.rpmfusion
       become: yes
-    - vim
-    - gnome-tweak-tool
-    - vlc
+    - base_packages
     - zsh
-    - tilix
-    - virtualbox
     - vscode
-    - keepassxc
-    - transmission
-    - libreoffice
     - browser
     - skype4linux
-    - tor-browser
-    - virtualbox
-    - gimp
     - balena-etcher
-    - solaar
-    - virt-manager
-    - imagemagic
-    - rclone
+    - autoremove_unused_packages
+    # - ms-font

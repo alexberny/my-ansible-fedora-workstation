@@ -22,3 +22,10 @@
   package: 
     name: code
     state: present
+
+- name: max_user_watch
+  become: yes
+  lineinfile:
+    path: /etc/sysctl.conf
+    regexp: '^fs.inotify.max_user_watches='
+    line: fs.inotify.max_user_watches = 524288

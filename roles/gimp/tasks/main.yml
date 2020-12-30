@@ -1,5 +1,0 @@
-- name: Install Gimp
-  become: yes
-  package: 
-    name: gimp
-    state: present
