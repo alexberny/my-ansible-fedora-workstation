@@ -11,6 +11,18 @@ set -x
 set -e
 PATH=/usr/local/bin:$PATH
 
+# install ansible
+sudo dnf install ansible
+
+# get ansible script
+if [ ! -d my-ansible-fedora-workstation ]; then
+    git clone https://github.com/alexberny/thin_client_ubuntu_with_ansible.git
+    cd my-ansible-fedora-workstation
+else
+    cd my-ansible-fedora-workstation
+    git pull
+fi 
+
 
 # install ansible galaxy dep
 ansible-galaxy install -r requirements.yml
