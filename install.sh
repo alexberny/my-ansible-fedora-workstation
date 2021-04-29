@@ -16,7 +16,7 @@ sudo dnf install ansible
 
 # get ansible script
 if [ ! -d my-ansible-fedora-workstation ]; then
-    git clone https://github.com/alexberny/thin_client_ubuntu_with_ansible.git
+    git clone https://github.com/alexberny/my-ansible-fedora-workstation.git
     cd my-ansible-fedora-workstation
 else
     cd my-ansible-fedora-workstation
