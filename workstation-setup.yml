@@ -15,6 +15,6 @@
     - vscode
     - browser
     - skype4linux
-    - balena-etcher
+    #- balena-etcher
     - autoremove_unused_packages
     # - ms-font
