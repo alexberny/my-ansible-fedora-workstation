@@ -2,6 +2,7 @@
   get_url: 
     url: https://dl.cloudsmith.io/public/balena/etcher/setup.rpm.sh
     dest: /tmp
+    mode: a+x
 
 - name: Install Balena Etcher
   become: yes
