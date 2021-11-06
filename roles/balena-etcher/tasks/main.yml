@@ -8,6 +8,10 @@
 - name: Install Balena Etcher
   become: yes
   ansible.builtin.command: "{{ geturl_return_value.dest }}"
+  register: install_etcher
+
+- debug:
+    var: install_etcher
 
 - name: Remove Balena Etcher install file
   file:
