@@ -3,7 +3,7 @@
     url: https://dl.cloudsmith.io/public/balena/etcher/setup.rpm.sh
     dest: /tmp
     mode: a+x
-    register: geturl_return_value
+  register: geturl_return_value
 
 - debug:
     var: geturl_return_value
