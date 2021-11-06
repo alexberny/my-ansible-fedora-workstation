@@ -2,19 +2,19 @@
   stat:
     path: /etc/yum.repos.d/opera.repo
   register: stat_opera_repo
-  
-- name: get Vivaldi repo 
-  become: yes 
-  command: dnf config-manager --add-repo https://repo.vivaldi.com/archive/vivaldi-fedora.repo
-  
+
 - name: Copy Opera repo
   become: yes
   copy: 
     src: ../files/opera.repo
     dest: /etc/yum.repos.d/opera.repo
   when: not stat_opera_repo.stat.exists
+  
+- name: get Vivaldi repo 
+  become: yes 
+  command: dnf config-manager --add-repo https://repo.vivaldi.com/archive/vivaldi-fedora.repo
 
-- name: install docker repository
+- name: install Google Chrome repository
   become: yes
   command: dnf config-manager --set-enabled google-chrome
 
