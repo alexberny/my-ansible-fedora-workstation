@@ -5,14 +5,11 @@
     mode: a+x
   register: geturl_return_value
 
-- debug:
-    var: geturl_return_value
-
 - name: Install Balena Etcher
   become: yes
-  ansible.builtin.command: /tmp/balena-etcher_rpm.sh
+  ansible.builtin.command: "{{ geturl_return_value.dest }}"
 
 - name: Remove Balena Etcher install file
   file:
     state: absent
-    path: /tmp/balena-etcher_rpm.sh
+    path: "{{ geturl_return_value.dest }}"
