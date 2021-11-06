@@ -6,9 +6,7 @@
 
 - name: Install Balena Etcher
   become: yes
-  dnf: 
-    name: "/tmp/setup.rpm.sh"
-    state: present
+  ansible.builtin.command: /tmp/setup.rpm.sh
 
 - name: Remove Balena Etcher install file
   file:
