@@ -3,12 +3,16 @@
     url: https://dl.cloudsmith.io/public/balena/etcher/setup.rpm.sh
     dest: /tmp
     mode: a+x
+    register: geturl_return_value
+
+- debug:
+  var: geturl_return_value
 
 - name: Install Balena Etcher
   become: yes
-  ansible.builtin.command: /tmp/setup.rpm.sh
+  ansible.builtin.command: /tmp/balena-etcher_rpm.sh
 
 - name: Remove Balena Etcher install file
   file:
     state: absent
-    path: "/tmp/setup.rpm.sh"
+    path: /tmp/balena-etcher_rpm.sh
