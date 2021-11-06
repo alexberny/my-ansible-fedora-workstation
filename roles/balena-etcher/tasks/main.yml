@@ -1,19 +1,22 @@
-- name: Install Balena Etcher repo
+- name: Download Balena Etcher repo
   get_url: 
     url: https://dl.cloudsmith.io/public/balena/etcher/setup.rpm.sh
     dest: /tmp
     mode: a+x
   register: geturl_return_value
 
-- name: Install Balena Etcher
+- name: Install Balena Etcher repo
   become: yes
   ansible.builtin.command: "{{ geturl_return_value.dest }}"
   register: install_etcher
 
-- debug:
-    var: install_etcher
-
-- name: Remove Balena Etcher install file
+- name: Remove Balena Etcher install repo
   file:
     state: absent
     path: "{{ geturl_return_value.dest }}"
+
+- name: Install Balena Etcher
+  become: yes
+  dnf:
+    - balena-etcher-electron
+  state: present
