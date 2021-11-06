@@ -1,15 +1,15 @@
 - name: Install Balena Etcher repo
   get_url: 
     url: https://dl.cloudsmith.io/public/balena/etcher/setup.rpm.sh
-    dest: ~/.
+    dest: /tmp
 
 - name: Install Balena Etcher
   become: yes
   dnf: 
-    name: "{{ ansible_user_dir }}/setup.rpm.sh"
+    name: "/tmp/setup.rpm.sh"
     state: present
 
 - name: Remove Balena Etcher install file
   file:
     state: absent
-    path: "{{ ansible_user_dir }}/setup.rpm.sh"
+    path: "/tmp/setup.rpm.sh"
