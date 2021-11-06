@@ -6,7 +6,7 @@
     register: geturl_return_value
 
 - debug:
-  var: geturl_return_value
+    var: geturl_return_value
 
 - name: Install Balena Etcher
   become: yes
