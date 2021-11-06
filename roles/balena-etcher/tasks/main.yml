@@ -6,10 +6,10 @@
 - name: Install Balena Etcher
   become: yes
   dnf: 
-    name: "{{ ansible_facts['env']['HOME'] }}/setup.rpm.sh"
+    name: "{{ ansible_user_dir }}/setup.rpm.sh"
     state: present
 
 - name: Remove Balena Etcher install file
   file:
     state: absent
-    path: "{{ ansible_facts['env']['HOME'] }}/setup.rpm.sh"
+    path: "{{ ansible_user_dir }}/setup.rpm.sh"
