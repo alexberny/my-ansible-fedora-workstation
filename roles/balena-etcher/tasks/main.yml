@@ -18,5 +18,6 @@
 - name: Install Balena Etcher
   become: yes
   dnf:
-    - balena-etcher-electron
-  state: present
+    name:
+      - balena-etcher-electron
+    state: present
