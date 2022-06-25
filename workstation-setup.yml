@@ -11,5 +11,6 @@
     - balena-etcher
     - autoremove_unused_packages
 
-- name: Unconditionally reboot the machine with all defaults
-  ansible.builtin.reboot:
+tasks:
+  - name: Unconditionally reboot the machine with all defaults
+    ansible.builtin.reboot:
