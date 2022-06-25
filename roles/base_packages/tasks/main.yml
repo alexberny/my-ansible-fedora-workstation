@@ -1,3 +1,5 @@
+---
+
 - name: Upgrade all packages
   become: yes
   dnf:
@@ -30,9 +32,9 @@
       - pamu2fcfg
       - yubikey-manager
       - dnf-utils
-      - fedora-workstation-repositories
-      - gstreamer1
-      - gstreamer1-plugins-base
+      # # - fedora-workstation-repositories
+      # - gstreamer1
+      # - gstreamer1-plugins-base
       - cabextract
       - xorg-x11-font-utils
       - fontconfig

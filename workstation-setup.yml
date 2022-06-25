@@ -1,15 +1,8 @@
 - name: "Install workstation"
   hosts: localhost
   connection: local
-  #become: 'yes'
   roles:
-    # - ansible-galaxy
-    - role: robertdebock.bootstrap
-      become: yes
-    - role: robertdebock.epel
-      become: yes
-    - role: robertdebock.rpmfusion
-      become: yes
+    - external_repo
     - base_packages
     - zsh
     - vscode
@@ -17,4 +10,6 @@
     - skype4linux
     - balena-etcher
     - autoremove_unused_packages
-    # - ms-font
+
+- name: Unconditionally reboot the machine with all defaults
+  ansible.builtin.reboot:
