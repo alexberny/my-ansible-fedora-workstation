@@ -28,3 +28,5 @@ fi
 # ansible-galaxy install -r requirements.yml
 
 ansible-playbook workstation-setup.yml --ask-become-pass
+# install ansible galaxy dep
+# ansible-galaxy install -r requirements.yml
