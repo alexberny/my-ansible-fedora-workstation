@@ -23,9 +23,12 @@
   dnf:
     name: opera-stable
     state: present
+    disable_gpg_check: true
+
 
 - name: Install Vivaldi browser
   become: yes
   dnf:
     name: vivaldi-stable
     state: present
+    disable_gpg_check: true
