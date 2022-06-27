@@ -10,7 +10,3 @@
     - skype4linux
     - balena-etcher
     - autoremove_unused_packages
-
-  tasks:
-    - name: Unconditionally reboot the machine with all defaults
-      ansible.builtin.reboot:

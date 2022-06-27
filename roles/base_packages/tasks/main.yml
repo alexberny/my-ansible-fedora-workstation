@@ -10,6 +10,7 @@
   become: yes
   dnf:
     name:
+      - fedora-workstation-repositories
       - vim
       - gnome-tweak-tool
       - vlc
@@ -32,7 +33,6 @@
       - pamu2fcfg
       - yubikey-manager
       - dnf-utils
-      # # - fedora-workstation-repositories
       # - gstreamer1
       # - gstreamer1-plugins-base
       - cabextract
