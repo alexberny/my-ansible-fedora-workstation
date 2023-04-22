@@ -25,10 +25,26 @@
     state: present
     disable_gpg_check: true
 
-
 - name: Install Vivaldi browser
   become: yes
   dnf:
     name: vivaldi-stable
     state: present
     disable_gpg_check: true
+
+- name: get Brave browser repo
+  become: yes
+  command: dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+
+- name: get Brave browser key
+  become: yes
+  ansible.builtin.rpm_key:
+    state: present
+    key: https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+
+- name: Install Brave
+  become: yes
+  dnf:
+    name: brave-browser
+    state: present
+
