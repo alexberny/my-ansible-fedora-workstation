@@ -7,6 +7,7 @@
     - zsh
     - vscode
     - browser
+    - rclone
     # - skype4linux
     - balena-etcher
     - autoremove_unused_packages
