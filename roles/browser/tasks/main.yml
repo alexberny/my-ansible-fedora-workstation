@@ -4,9 +4,12 @@
   become: yes 
   command: dnf config-manager --add-repo https://repo.vivaldi.com/archive/vivaldi-fedora.repo
 
-- name: get Opera repo 
-  become: yes 
-  command: dnf config-manager --add-repo https://rpm.opera.com/rpm
+- name: Install Vivaldi browser
+  become: yes
+  dnf:
+    name: vivaldi-stable
+    state: present
+    disable_gpg_check: true
 
 # - name: install Google Chrome repository
 #   become: yes
@@ -18,17 +21,14 @@
     name: google-chrome-stable
     state: present
 
+- name: get Opera repo 
+  become: yes 
+  command: dnf config-manager --add-repo https://rpm.opera.com/rpm
+
 - name: Install Opera browser
   become: yes
   dnf:
     name: opera-stable
-    state: present
-    disable_gpg_check: true
-
-- name: Install Vivaldi browser
-  become: yes
-  dnf:
-    name: vivaldi-stable
     state: present
     disable_gpg_check: true
 
