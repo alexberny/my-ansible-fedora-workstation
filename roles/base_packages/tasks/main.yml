@@ -26,7 +26,7 @@
       - virt-manager
       - ImageMagick
       - potrace
-      - rclone
+      # - rclone
       - "@Development Tools"
       - youtube-dl
       - pam-u2f
