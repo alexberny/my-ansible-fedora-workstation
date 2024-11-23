@@ -23,7 +23,7 @@
 
 - name: get Opera repo 
   become: yes 
-  command: dnf config-manager addrepo --from-repofile=https://rpm.opera.com/rpm
+  command: dnf config-manager addrepo  --id=opera-browser --set=name='Opera Browser packages' --set=baseurl='https://rpm.opera.com/rpm' --set=gpgkey='https://rpm.opera.com/rpmrepo.key'
 
 - name: Install Opera browser
   become: yes
