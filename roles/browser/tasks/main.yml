@@ -2,7 +2,7 @@
   
 - name: get Vivaldi repo 
   become: yes 
-  command: dnf config-manager --add-repo https://repo.vivaldi.com/archive/vivaldi-fedora.repo
+  command: dnf config-manager addrepo --from-repofile=https://repo.vivaldi.com/archive/vivaldi-fedora.repo
 
 - name: Install Vivaldi browser
   become: yes
@@ -23,7 +23,7 @@
 
 - name: get Opera repo 
   become: yes 
-  command: dnf config-manager --add-repo https://rpm.opera.com/rpm
+  command: dnf config-manager addrepo --from-repofile=https://rpm.opera.com/rpm
 
 - name: Install Opera browser
   become: yes
@@ -34,7 +34,7 @@
 
 - name: get Brave browser repo
   become: yes
-  command: dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+  command: dnf config-manager addrepo --from-repofile=https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
 
 - name: get Brave browser key
   become: yes
