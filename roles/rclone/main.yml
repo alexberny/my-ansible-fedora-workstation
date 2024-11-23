@@ -1,0 +1,4 @@
+- name: Install the nginx rpm from a remote repo
+  ansible.builtin.dnf:
+    name: 'https://downloads.rclone.org/rclone-current-linux-amd64.rpm'
+    state: present
