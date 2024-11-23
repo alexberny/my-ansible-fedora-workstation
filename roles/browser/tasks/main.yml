@@ -8,9 +8,9 @@
   become: yes 
   command: dnf config-manager --add-repo https://rpm.opera.com/rpm
 
-- name: install Google Chrome repository
-  become: yes
-  command: dnf config-manager --set-enabled google-chrome
+# - name: install Google Chrome repository
+#   become: yes
+#   command: dnf config-manager --set-enabled google-chrome
 
 - name: Install Google Chrome
   become: yes
