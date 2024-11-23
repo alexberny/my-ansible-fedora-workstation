@@ -34,8 +34,7 @@
 
 - name: get Brave browser repo
   become: yes
-  command: dnf config-manager addrepo  --id=brave-browser --set=name='Brave Browser' --set=baseurl='https://rpm.opera.com/rpm' --set=gpgkey='https://rpm.opera.com/rpmrepo.key'
-  dnf config-manager addrepo --from-repofile=https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+  command: dnf config-manager addrepo  --id=brave-browser --set=name='Brave Browser' --set=baseurl='https://brave-browser-rpm-release.s3.brave.com/$basearch' 
 
 - name: get Brave browser key
   become: yes
