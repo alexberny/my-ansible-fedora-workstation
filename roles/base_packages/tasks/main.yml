@@ -10,7 +10,7 @@
   become: yes
   dnf:
     name:
-      - fedora-workstation-repositories
+      # - fedora-workstation-repositories
       - vim
       - gnome-tweak-tool
       - vlc
