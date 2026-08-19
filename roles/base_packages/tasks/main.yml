@@ -1,11 +1,11 @@
 ---
 - name: Configurazione Completa Sistema (Fedora) e Zsh Fast
-  # hosts: localhost
-  # connection: local
+  hosts: all
+  become: true
   # gather_facts: true
-  # vars:
-  #   user_name: "{{ ansible_user_id }}"
-  #   user_home: "{{ ansible_env.HOME }}"
+  vars:
+    user_name: "{{ ansible_user_id }}"
+    user_home: "{{ ansible_env.HOME }}"
 
   tasks:
     # --- 1. OTTIMIZZAZIONE PRE-AGGIORNAMENTO ---
