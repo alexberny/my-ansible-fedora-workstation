@@ -3,11 +3,12 @@
   connection: local
   roles:
     - external_repo
+    - firmware-update
     - base_packages
+    - ffmpeg-swapping
     - zsh
     - vscode
     - browser
     - rclone
-    # - skype4linux
     # - balena-etcher
     - autoremove_unused_packages

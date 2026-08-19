@@ -1,0 +1,18 @@
+---
+- hosts: fedora44_nodes
+  become: yes
+  tasks:
+    - name: Ensure fwupd service is running
+      ansible.builtin.systemd:
+        name: fwupd
+        state: started
+        enabled: yes
+
+    - name: Refresh fwupd metadata from LVFS
+      ansible.builtin.command: fwupdmgr refresh --force
+      changed_when: false
+
+    - name: Check and install available firmware updates
+      ansible.builtin.command: fwupdmgr update -y
+      register: fw_update
+      changed_when: "'No upgrades for' not in fw_update.stdout"

@@ -1,75 +1,89 @@
 ---
-- name: Installing zsh
-  become: yes
-  package:
-    name: zsh
-    state: present
+- name: Ottimizzazione Sistema e Setup Zsh ad Alte Prestazioni
+  hosts: localhost
+  connection: local
+  become: true
+  vars:
+    user_name: "{{ ansible_user_id }}"
+    user_home: "{{ ansible_env.HOME }}"
 
-- name: check if .zshrc file exists
-  stat:
-      path: ~/.zshrc
-  register: stat_zshrc_result
+  tasks:
+    - name: 📦 Installa Zsh, Git e le dipendenze necessarie
+      ansible.builtin.dnf:
+        name:
+          - zsh
+          - git
+          - curl
+        state: present
 
-- name: Check if antigen directory exists
-  stat:
-      path: ~/.antigen
-  register: stat_antigen_result
+    - name: 🧑‍💻 Imposta Zsh come shell predefinita per l'utente
+      ansible.builtin.user:
+        name: "{{ user_name }}"
+        shell: /bin/zsh
 
-- name: get antigen
-  get_url: 
-    url: http://git.io/antigen 
-    dest: ~/antigen.zsh
-  when: not stat_antigen_result.stat.exists
+    - name: 🦀 Installa il gestore plugin Sheldon (tramite script ufficiale)
+      ansible.builtin.shell:
+        cmd: curl --proto '=https' --tlsv1.2 -sSf https://github.io | bash -s -- --repo rossmacarthur/sheldon --to /usr/local/bin
+        creates: /usr/local/bin/sheldon
 
-- name: Get preconfigured .zshrc 
-  copy:
-    src: ../files/.zshrc
-    dest: ~/.zshrc
-  when: not stat_zshrc_result.stat.exists
+    - name: 📁 Crea le cartelle di configurazione per l'utente
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        owner: "{{ user_name }}"
+        group: "{{ user_name }}"
+        mode: '0755'
+      loop:
+        - "{{ user_home }}/.config/sheldon"
+        - "{{ user_home }}/.config/zsh"
 
-- name: Get Awesome-Fonts
-  become: yes
-  package:
-    name: fontawesome-fonts
-    state: present
+    - name: ⚙️ Configura i plugin veloci in Sheldon (plugins.toml)
+      ansible.builtin.copy:
+        dest: "{{ user_home }}/.config/sheldon/plugins.toml"
+        owner: "{{ user_name }}"
+        group: "{{ user_name }}"
+        mode: '0644'
+        content: |
+          shell = "zsh"
 
-# - name: Get Nerd Font
-#   git:
-#     repo: https://github.com/ryanoasis/nerd-fonts.git
-#     depth: "1"
-#     dest: /tmp/.nerd-fonts
+          [plugins.zsh-defer]
+          github = "romkatv/zsh-defer"
 
-# - name: Install Nerd font
-#   command: install.sh
-#   become: yes
-#   args:
-#     chdir: /tmp/.nerd-fonts
+          [plugins.powerlevel10k]
+          github = "romkatv/powerlevel10k"
 
-# - name: Remove Nerd font downloaded files
-#   command: rm /tmp/.nerd-fonts
+          [plugins.ohmyzsh-git]
+          github = "ohmyzsh/ohmyzsh"
+          dir = "plugins/git"
 
-- name: Install Powerline fonts
-  become: yes
-  package:
-     name: powerline-fonts
-     state: present
+          [plugins.zsh-autosuggestions]
+          github = "zsh-users/zsh-autosuggestions"
+          use = ["{{ name }}.zsh"]
+          apply = ["defer"]
 
-- name: Install MesloGS NF Regular Font
-  get_url:
-    url: https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf
-    dest: ~/.local/share/fonts
+          [plugins.zsh-syntax-highlighting]
+          github = "zsh-users/zsh-syntax-highlighting"
+          apply = ["defer"]
 
-- name: Install MesloGS NF Bold Font
-  get_url:
-    url: https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf
-    dest: ~/.local/share/fonts
+    - name: 📝 Genera il nuovo file .zshrc ultra-veloce
+      ansible.builtin.copy:
+        dest: "{{ user_home }}/.zshrc"
+        owner: "{{ user_name }}"
+        group: "{{ user_name }}"
+        mode: '0644'
+        content: |
+          # Abilita l'avvio istantaneo di Powerlevel10k
+          if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+            source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+          fi
 
-- name: Install MesloGS NF Italic Font
-  get_url:
-    url: https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf
-    dest: ~/.local/share/fonts
+          # Inizializza i plugin caricati da Sheldon
+          eval "$(sheldon source)"
 
-- name: Install MesloGS NF Bold Italic Font
-  get_url:
-    url: https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf
-    dest: ~/.local/share/fonts
+          # Carica la configurazione grafica di P10k se esiste
+          [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+          # Alias utili per DNF
+          alias dnfi="sudo dnf install"
+          alias dnfu="sudo dnf upgrade"
+          alias dnfr="sudo dnf remove"

@@ -1,15 +1,25 @@
 ---
   
-- name: get Vivaldi repo 
-  become: yes 
-  command: dnf config-manager addrepo --from-repofile=https://repo.vivaldi.com/archive/vivaldi-fedora.repo
+- name: Install Vivaldi on Fedora
+  hosts: all
+  become: true
+  tasks:
+    - name: Download Vivaldi RPM package
+      ansible.builtin.get_url:
+        url: https://vivaldi.com
+        dest: /tmp/vivaldi-stable.x86_64.rpm
+        mode: '0644'
 
-- name: Install Vivaldi browser
-  become: yes
-  dnf:
-    name: vivaldi-stable
-    state: present
-    disable_gpg_check: true
+    - name: Install Vivaldi RPM with disabled GPG check for initial setup
+      ansible.builtin.dnf:
+        name: /tmp/vivaldi-stable.x86_64.rpm
+        state: present
+        disable_gpg_check: true
+
+    - name: Remove temporary RPM file
+      ansible.builtin.file:
+        path: /tmp/vivaldi-stable.x86_64.rpm
+        state: absent
 
 # - name: install Google Chrome repository
 #   become: yes
@@ -21,30 +31,49 @@
     name: google-chrome-stable
     state: present
 
-- name: get Opera repo 
-  become: yes 
-  command: dnf config-manager addrepo  --id=opera-browser --set=name='Opera Browser packages' --set=baseurl='https://rpm.opera.com/rpm' --set=gpgkey='https://rpm.opera.com/rpmrepo.key'
+- name: Install Opera Browser on Fedora
+  hosts: all
+  become: true
+  tasks:
+    - name: Import Opera GPG key
+      ansible.builtin.rpm_key:
+        key: https://rpm.opera.com/rpmrepo.key
+        state: present
 
-- name: Install Opera browser
-  become: yes
-  dnf:
-    name: opera-stable
-    state: present
-    disable_gpg_check: true
+    - name: Add Opera RPM repository
+      ansible.builtin.yum_repository:
+        name: opera
+        description: Opera packages
+        baseurl: https://rpm.opera.com/rpm
+        gpgcheck: true
+        gpgkey: https://rpm.opera.com/rpmrepo.key
+        enabled: true
 
-- name: get Brave browser repo
-  become: yes
-  command: dnf config-manager addrepo  --id=brave-browser --set=name='Brave Browser' --set=baseurl='https://brave-browser-rpm-release.s3.brave.com/$basearch' 
+    - name: Install Opera Stable package
+      ansible.builtin.dnf:
+        name: opera-stable
+        state: present
 
-- name: get Brave browser key
-  become: yes
-  ansible.builtin.rpm_key:
-    state: present
-    key: https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+- name: Install Brave Browser on Fedora
+  hosts: all
+  become: true
+  tasks:
+    - name: Import Brave GPG key
+      ansible.builtin.rpm_key:
+        key: https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+        state: present
 
-- name: Install Brave
-  become: yes
-  dnf:
-    name: brave-browser
-    state: present
+    - name: Add Brave RPM repository
+      ansible.builtin.yum_repository:
+        name: brave-browser
+        description: Brave Browser Release Channel
+        baseurl: https://brave-browser-rpm-release.s3.brave.com/x86_64/
+        gpgcheck: true
+        gpgkey: https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+        enabled: true
+
+    - name: Install Brave Browser package
+      ansible.builtin.dnf:
+        name: brave-browser
+        state: present
 

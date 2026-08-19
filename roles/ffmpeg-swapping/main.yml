@@ -1,0 +1,13 @@
+- name: Configurazione multimediale completa (Codec, FFmpeg e Gruppi)
+  ansible.builtin.dnf:
+    name:
+      - ffmpeg
+      - "@multimedia"
+      - "@sound-and-video"
+      - "@authoring-and-publishing"
+      - gstreamer1-plugins-bad-freeworld
+      - gstreamer1-plugins-ugly
+      - gstreamer1-vaapi
+    state: latest
+    allowerasing: yes
+    exclude: "PackageKit-gstreamer-plugin"

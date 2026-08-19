@@ -1,47 +1,61 @@
 ---
+- name: Configurazione Completa Sistema (Fedora) e Zsh Fast
+  hosts: localhost
+  connection: local
+  gather_facts: true
+  vars:
+    user_name: "{{ ansible_user_id }}"
+    user_home: "{{ ansible_env.HOME }}"
 
-- name: Upgrade all packages
-  become: yes
-  dnf:
-    name: "*"
-    state: latest
+  tasks:
+    # --- 1. OTTIMIZZAZIONE PRE-AGGIORNAMENTO ---
+    - name: 🚀 Velocizza DNF configurando download paralleli e specchi veloci
+      become: true
+      ansible.builtin.blockinfile:
+        path: /etc/dnf/dnf.conf
+        marker: "# {mark} ANSIBLE MANAGED CHANGES"
+        block: |
+          max_parallel_downloads=10
+          fastestmirror=True
 
-- name: Install base packages
-  become: yes
-  dnf:
-    name:
-      # - fedora-workstation-repositories
-      - vim
-      - gnome-tweak-tool
-      - vlc
-      - tilix
-      - VirtualBox
-      - keepassxc
-      - transmission
-      - libreoffice
-      - libreoffice-langpack-it
-      - torbrowser-launcher
-      - gimp
-      - solaar
-      - virt-manager
-      - ImageMagick
-      - potrace
-      # - rclone
-      - "@Development Tools"
-      - youtube-dl
-      - pam-u2f
-      - pamu2fcfg
-      - yubikey-manager
-      - dnf-utils
-      # - gstreamer1
-      # - gstreamer1-plugins-base
-      - cabextract
-      - xorg-x11-font-utils
-      - fontconfig
-      - ftp
-      - telnet
-      - telegram-desktop
-      - python3-pip
-      - xprop
-      # - 'https://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm'
-    state: present
+    # --- 2. AGGIORNAMENTI E INSTALLAZIONE PACCHETTI ---
+    - name: 🔄 Aggiorna tutti i pacchetti del sistema
+      become: true
+      ansible.builtin.dnf:
+        name: "*"
+        state: latest
+
+    - name: 📦 Installa i pacchetti base richiesti e le dipendenze shell
+      become: true
+      ansible.builtin.dnf:
+        name:
+          - "@Development Tools"
+          - vim
+          - gnome-tweak-tool
+          - vlc
+          - tilix
+          - VirtualBox
+          - keepassxc
+          - transmission
+          - libreoffice
+          - libreoffice-langpack-it
+          - torbrowser-launcher
+          - gimp
+          - solaar
+          - virt-manager
+          - ImageMagick
+          - potrace
+          - yt-dlp             # Sostituito youtube-dl (deprecato) con yt-dlp
+          - pam-u2f
+          - pamu2fcfg
+          - yubikey-manager
+          - dnf-utils
+          - ftp
+          - telnet
+          - telegram-desktop
+          - python3-pip
+          - xprop
+          - zsh                # Dipendenze per il nuovo setup shell
+          - git
+          - curl
+        state: present
