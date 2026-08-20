@@ -1,56 +1,53 @@
 ---
 
-- name: Configurazione Completa Sistema (Fedora) e Zsh Fast
-  
-  tasks:
-    # --- 1. OTTIMIZZAZIONE PRE-AGGIORNAMENTO ---
-    - name: 🚀 Velocizza DNF configurando download paralleli e specchi veloci
-      become: true
-      ansible.builtin.blockinfile:
-        path: /etc/dnf/dnf.conf
-        marker: "# {mark} ANSIBLE MANAGED CHANGES"
-        block: |
-          max_parallel_downloads=10
-          fastestmirror=True
+# --- 1. OTTIMIZZAZIONE PRE-AGGIORNAMENTO ---
+- name: 🚀 Velocizza DNF configurando download paralleli e specchi veloci
+  become: true
+  ansible.builtin.blockinfile:
+    path: /etc/dnf/dnf.conf
+    marker: "# {mark} ANSIBLE MANAGED CHANGES"
+    block: |
+      max_parallel_downloads=10
+      fastestmirror=True
 
-    # --- 2. AGGIORNAMENTI E INSTALLAZIONE PACCHETTI ---
-    - name: 🔄 Aggiorna tutti i pacchetti del sistema
-      become: true
-      ansible.builtin.dnf:
-        name: "*"
-        state: latest
+# --- 2. AGGIORNAMENTI E INSTALLAZIONE PACCHETTI ---
+- name: 🔄 Aggiorna tutti i pacchetti del sistema
+  become: true
+  ansible.builtin.dnf:
+    name: "*"
+    state: latest
 
-    - name: 📦 Installa i pacchetti base richiesti e le dipendenze shell
-      become: true
-      ansible.builtin.dnf:
-        name:
-          - "@Development Tools"
-          - vim
-          - gnome-tweak-tool
-          - vlc
-          - tilix
-          - VirtualBox
-          - keepassxc
-          - transmission
-          - libreoffice
-          - libreoffice-langpack-it
-          - torbrowser-launcher
-          - gimp
-          - solaar
-          - virt-manager
-          - ImageMagick
-          - potrace
-          - yt-dlp             # Sostituito youtube-dl (deprecato) con yt-dlp
-          - pam-u2f
-          - pamu2fcfg
-          - yubikey-manager
-          - dnf-utils
-          - ftp
-          - telnet
-          - telegram-desktop
-          - python3-pip
-          - xprop
-          - zsh                # Dipendenze per il nuovo setup shell
-          - git
-          - curl
-        state: present
+- name: 📦 Installa i pacchetti base richiesti e le dipendenze shell
+  become: true
+  ansible.builtin.dnf:
+    name:
+      - "@Development Tools"
+      - vim
+      - gnome-tweak-tool
+      - vlc
+      - tilix
+      - VirtualBox
+      - keepassxc
+      - transmission
+      - libreoffice
+      - libreoffice-langpack-it
+      - torbrowser-launcher
+      - gimp
+      - solaar
+      - virt-manager
+      - ImageMagick
+      - potrace
+      - yt-dlp             # Sostituito youtube-dl (deprecato) con yt-dlp
+      - pam-u2f
+      - pamu2fcfg
+      - yubikey-manager
+      - dnf-utils
+      - ftp
+      - telnet
+      - telegram-desktop
+      - python3-pip
+      - xprop
+      - zsh                # Dipendenze per il nuovo setup shell
+      - git
+      - curl
+    state: present
