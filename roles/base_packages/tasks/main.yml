@@ -47,4 +47,5 @@
       - zsh                # Dipendenze per il nuovo setup shell
       - git
       - curl
+      - onedrive
     state: present
