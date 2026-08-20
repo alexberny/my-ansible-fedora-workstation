@@ -9,6 +9,7 @@
   roles:
     - external_repo
     - firmware-update
+    - fix-hw-conf
     - base_packages
     - ffmpeg-swapping
     - zsh
