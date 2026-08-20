@@ -1,0 +1,13 @@
+---
+
+- name: Install or update to the latest rclone RPM
+  ansible.builtin.dnf:
+    name: "https://downloads.rclone.org/rclone-current-linux-amd64.rpm"
+    state: latest
+    disable_gpg_check: true
+
+
+- name: install rclone
+  ansible.builtin.dnf:
+    name: rclone
+    state: present
