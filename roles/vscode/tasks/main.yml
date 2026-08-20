@@ -1,0 +1,17 @@
+---
+
+- name: Importa la chiave GPG di Microsoft
+  rpm_key:
+    state: present
+    key: https://packages.microsoft.com/keys/microsoft.asc
+
+- name: Crea il file del repository per VS Code
+  yum_repository:
+    name: code
+    description: Visual Studio Code
+    baseurl: https://packages.microsoft.com/yumrepos/vscode
+    enabled: true
+    gpgcheck: true
+    gpgkey: https://packages.microsoft.com/keys/microsoft.asc
+    # Parametri aggiuntivi equivalenti al tuo comando echo:
+    repo_gpgcheck: false
