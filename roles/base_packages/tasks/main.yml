@@ -1,4 +1,5 @@
 ---
+
 - name: Configurazione Completa Sistema (Fedora) e Zsh Fast
   hosts: all
   become: true
