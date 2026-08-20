@@ -1,0 +1,15 @@
+---
+
+- name: Rileva la presenza della scheda Intel 3165
+  ansible.builtin.shell: lspci -nnk | grep -iA2 net
+  register: pci_devices
+  changed_when: false
+
+- name: Copia iwlwifi.conf se la scheda Intel 3165 è presente
+  ansible.builtin.copy:
+    src: files/iwlwifi.conf
+    dest: /etc/modprobe.d/iwlwifi.conf
+    owner: root
+    group: root
+    mode: '0644'
+  when: "'3165' in pci_devices.stdout"
