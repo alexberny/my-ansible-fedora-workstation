@@ -3,8 +3,8 @@
   connection: local
   become: true
   vars:
-  user_name: "{{ ansible_facts['user_id'] }}"
-  user_home: "{{ ansible_facts['env']['HOME'] }}"
+    user_name: "{{ ansible_facts['user_id'] }}"
+    user_home: "{{ ansible_facts['env']['HOME'] }}"
 
   roles:
     - external_repo
