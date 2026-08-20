@@ -27,49 +27,40 @@
     name: google-chrome-stable
     state: present
 
-- name: Install Opera Browser on Fedora
-  hosts: all
-  become: true
-  tasks:
-    - name: Import Opera GPG key
-      ansible.builtin.rpm_key:
-        key: https://rpm.opera.com/rpmrepo.key
-        state: present
+- name: Import Opera GPG key
+  ansible.builtin.rpm_key:
+    key: https://rpm.opera.com/rpmrepo.key
+    state: present
 
-    - name: Add Opera RPM repository
-      ansible.builtin.yum_repository:
-        name: opera
-        description: Opera packages
-        baseurl: https://rpm.opera.com/rpm
-        gpgcheck: true
-        gpgkey: https://rpm.opera.com/rpmrepo.key
-        enabled: true
+- name: Add Opera RPM repository
+  ansible.builtin.yum_repository:
+    name: opera
+    description: Opera packages
+    baseurl: https://rpm.opera.com/rpm
+    gpgcheck: true
+    gpgkey: https://rpm.opera.com/rpmrepo.key
+    enabled: true
 
-    - name: Install Opera Stable package
-      ansible.builtin.dnf:
-        name: opera-stable
-        state: present
+- name: Install Opera Stable package
+  ansible.builtin.dnf:
+    name: opera-stable
+    state: present
 
-- name: Install Brave Browser on Fedora
-  hosts: all
-  become: true
-  tasks:
-    - name: Import Brave GPG key
-      ansible.builtin.rpm_key:
-        key: https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
-        state: present
+- name: Import Brave GPG key
+  ansible.builtin.rpm_key:
+    key: https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+    state: present
 
-    - name: Add Brave RPM repository
-      ansible.builtin.yum_repository:
-        name: brave-browser
-        description: Brave Browser Release Channel
-        baseurl: https://brave-browser-rpm-release.s3.brave.com/x86_64/
-        gpgcheck: true
-        gpgkey: https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
-        enabled: true
+- name: Add Brave RPM repository
+  ansible.builtin.yum_repository:
+    name: brave-browser
+    description: Brave Browser Release Channel
+    baseurl: https://brave-browser-rpm-release.s3.brave.com/x86_64/
+    gpgcheck: true
+    gpgkey: https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+    enabled: true
 
-    - name: Install Brave Browser package
-      ansible.builtin.dnf:
-        name: brave-browser
-        state: present
-
+- name: Install Brave Browser package
+  ansible.builtin.dnf:
+    name: brave-browser
+    state: present
