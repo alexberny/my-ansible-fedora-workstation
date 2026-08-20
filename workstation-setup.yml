@@ -1,6 +1,7 @@
 - name: "Install workstation"
   hosts: localhost
   connection: local
+  become: true
   vars:
     user_name: "{{ ansible_user_id }}"
     user_home: "{{ ansible_env.HOME }}"

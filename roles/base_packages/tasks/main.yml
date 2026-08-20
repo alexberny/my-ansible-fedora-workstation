@@ -2,7 +2,6 @@
 
 # --- 1. OTTIMIZZAZIONE PRE-AGGIORNAMENTO ---
 - name: 🚀 Velocizza DNF configurando download paralleli e specchi veloci
-  become: true
   ansible.builtin.blockinfile:
     path: /etc/dnf/dnf.conf
     marker: "# {mark} ANSIBLE MANAGED CHANGES"
@@ -12,13 +11,11 @@
 
 # --- 2. AGGIORNAMENTI E INSTALLAZIONE PACCHETTI ---
 - name: 🔄 Aggiorna tutti i pacchetti del sistema
-  become: true
   ansible.builtin.dnf:
     name: "*"
     state: latest
 
 - name: 📦 Installa i pacchetti base richiesti e le dipendenze shell
-  become: true
   ansible.builtin.dnf:
     name:
       - "@Development Tools"

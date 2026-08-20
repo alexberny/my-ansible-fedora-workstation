@@ -1,17 +1,15 @@
 ---
 
 - name: Enable RPMFusion Free repository
-  become: yes
-  dnf:
-    name: "https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm"
+  ansible.builtin.dnf:
+    name: "https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_major_version }}.noarch.rpm"
     state: present
     disable_gpg_check: yes
   when: ansible_distribution == 'Fedora'
 
-- name: Enable RPMFusion NONFree repository
-  become: yes
-  dnf:
-    name: "https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm"
+- name: Enable RPMFusion Nonfree repository
+  ansible.builtin.dnf:
+    name: "https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_distribution_major_version }}.noarch.rpm"
     state: present
     disable_gpg_check: yes
   when: ansible_distribution == 'Fedora'
