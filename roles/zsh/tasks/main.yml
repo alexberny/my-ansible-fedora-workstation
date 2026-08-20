@@ -50,7 +50,7 @@
 
       [plugins.zsh-autosuggestions]
       github = "zsh-users/zsh-autosuggestions"
-      use = ["{{ name }}.zsh"]
+      use = ["{% raw %}{{ name }}{% endraw %}.zsh"]
       apply = ["defer"]
 
       [plugins.zsh-syntax-highlighting]
