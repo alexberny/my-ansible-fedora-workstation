@@ -15,3 +15,9 @@
     gpgkey: https://packages.microsoft.com/keys/microsoft.asc
     # Parametri aggiuntivi equivalenti al tuo comando echo:
     repo_gpgcheck: false
+
+- name: Installa l'applicazione Visual Studio Code
+  dnf:
+    name: code
+    state: present
+    update_cache: yes
