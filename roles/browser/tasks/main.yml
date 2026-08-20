@@ -1,8 +1,6 @@
 ---
   
 - name: Install Vivaldi on Fedora
-  hosts: all
-  become: true
   tasks:
     - name: Download Vivaldi RPM package
       ansible.builtin.get_url:

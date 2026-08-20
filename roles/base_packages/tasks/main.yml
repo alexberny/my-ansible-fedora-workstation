@@ -1,13 +1,7 @@
 ---
 
 - name: Configurazione Completa Sistema (Fedora) e Zsh Fast
-  hosts: all
-  become: true
-  # gather_facts: true
-  vars:
-    user_name: "{{ ansible_user_id }}"
-    user_home: "{{ ansible_env.HOME }}"
-
+  
   tasks:
     # --- 1. OTTIMIZZAZIONE PRE-AGGIORNAMENTO ---
     - name: 🚀 Velocizza DNF configurando download paralleli e specchi veloci

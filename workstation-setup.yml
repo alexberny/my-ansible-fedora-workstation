@@ -1,6 +1,10 @@
 - name: "Install workstation"
   hosts: localhost
   connection: local
+  vars:
+    user_name: "{{ ansible_user_id }}"
+    user_home: "{{ ansible_env.HOME }}"
+
   roles:
     - external_repo
     - firmware-update
